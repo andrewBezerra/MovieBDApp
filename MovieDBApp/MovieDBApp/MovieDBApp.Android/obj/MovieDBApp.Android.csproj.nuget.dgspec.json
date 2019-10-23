@@ -46,33 +46,9 @@
               "target": "Package",
               "version": "[7.2.0.1367, )"
             },
-            "Xamarin.Android.Support.CustomTabs": {
-              "target": "Package",
-              "version": "[28.0.0.1, )"
-            },
-            "Xamarin.Android.Support.Design": {
-              "target": "Package",
-              "version": "[28.0.0.1, )"
-            },
-            "Xamarin.Android.Support.v4": {
-              "target": "Package",
-              "version": "[28.0.0.1, )"
-            },
-            "Xamarin.Android.Support.v7.AppCompat": {
-              "target": "Package",
-              "version": "[28.0.0.1, )"
-            },
-            "Xamarin.Android.Support.v7.CardView": {
-              "target": "Package",
-              "version": "[28.0.0.1, )"
-            },
-            "Xamarin.Android.Support.v7.MediaRouter": {
-              "target": "Package",
-              "version": "[28.0.0.1, )"
-            },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[3.6.0.344457, )"
+              "version": "[4.3.0.908675, )"
             }
           }
         }
@@ -129,7 +105,7 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[3.6.0.344457, )"
+              "version": "[4.3.0.908675, )"
             }
           },
           "imports": [
