@@ -1,121 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr format="reference" name="mediaRouteAudioTrackDrawable"/>
-    <attr format="reference" name="mediaRouteButtonStyle"/>
-    <attr format="reference" name="mediaRouteCloseDrawable"/>
-    <attr format="reference" name="mediaRouteControlPanelThemeOverlay"/>
-    <attr format="reference" name="mediaRouteDefaultIconDrawable"/>
-    <attr format="reference" name="mediaRoutePauseDrawable"/>
-    <attr format="reference" name="mediaRoutePlayDrawable"/>
-    <attr format="reference" name="mediaRouteSpeakerGroupIconDrawable"/>
-    <attr format="reference" name="mediaRouteSpeakerIconDrawable"/>
-    <attr format="reference" name="mediaRouteStopDrawable"/>
-    <attr format="reference" name="mediaRouteTheme"/>
-    <attr format="reference" name="mediaRouteTvIconDrawable"/>
-    <declare-styleable name="MediaRouteButton">
-        <!-- This drawable is a state list where the "checked" state
-             indicates active media routing.  Checkable indicates connecting
-             and non-checked / non-checkable indicates
-             that media is playing to the local device only. -->
-        <attr format="reference" name="externalRouteEnabledDrawable"/>
-        <!-- Tint to apply to the media route button -->
-        <attr format="color" name="mediaRouteButtonTint"/>
-
-        <attr name="android:minWidth"/>
-        <attr name="android:minHeight"/>
+    <color name="notification_action_color_filter">#ffffffff</color>
+    <color name="notification_icon_bg_color">#ff9e9e9e</color>
+    <color name="ripple_material_light">#1f000000</color>
+    <color name="secondary_text_default_material_light">#8a000000</color>
+    <declare-styleable name="ColorStateListItem">
+        <!-- Base color for this state. -->
+        <attr name="android:color"/>
+        <!-- Alpha multiplier applied to the base color. -->
+        <attr format="float" name="alpha"/>
+        <attr name="android:alpha"/>
     </declare-styleable>
-    <dimen name="mr_controller_volume_group_list_item_height">68dp</dimen>
-    <dimen name="mr_controller_volume_group_list_item_icon_size">24dp</dimen>
-    <dimen name="mr_controller_volume_group_list_max_height">288dp</dimen>
-    <dimen name="mr_controller_volume_group_list_padding_top">16dp</dimen>
-    <dimen name="mr_dialog_fixed_width_major">320dp</dimen>
-    <dimen name="mr_dialog_fixed_width_minor">320dp</dimen>
-    <integer name="mr_controller_volume_group_list_animation_duration_ms">400</integer>
-    <integer name="mr_controller_volume_group_list_fade_in_duration_ms">400</integer>
-    <integer name="mr_controller_volume_group_list_fade_out_duration_ms">200</integer>
-    <integer name="mr_update_routes_delay_ms">300</integer>
-    <string name="mr_button_content_description">Cast button</string>
-    <string name="mr_cast_button_connected">Cast button. Connected</string>
-    <string name="mr_cast_button_connecting">Cast button. Connecting</string>
-    <string name="mr_cast_button_disconnected">Cast button. Disconnected</string>
-    <string name="mr_cast_dialog_title_view_placeholder" translatable="false">No info available</string>
-    <string name="mr_chooser_searching">Finding devices</string>
-    <string name="mr_chooser_title">Cast to</string>
-    <string name="mr_controller_album_art">Album art</string>
-    <string name="mr_controller_casting_screen">Casting screen</string>
-    <string name="mr_controller_close_description">Close</string>
-    <string name="mr_controller_collapse_group">Collapse</string>
-    <string name="mr_controller_disconnect">Disconnect</string>
-    <string name="mr_controller_expand_group">Expand</string>
-    <string name="mr_controller_no_info_available">No info available</string>
-    <string name="mr_controller_no_media_selected">No media selected</string>
-    <string name="mr_controller_pause">Pause</string>
-    <string name="mr_controller_play">Play</string>
-    <string name="mr_controller_stop">Stop</string>
-    <string name="mr_controller_stop_casting">Stop casting</string>
-    <string name="mr_controller_volume_slider">Volume slider</string>
-    <string name="mr_dialog_device_header" translatable="false">Cast to a device</string>
-    <string name="mr_dialog_route_header" translatable="false">Play on a group</string>
-    <string name="mr_system_route_name">System</string>
-    <string name="mr_user_route_category_name">Devices</string>
-    <style name="TextAppearance.MediaRouter.PrimaryText" parent="TextAppearance.AppCompat.Subhead"/>
-    <style name="TextAppearance.MediaRouter.SecondaryText" parent="TextAppearance.AppCompat.Body1"/>
-    <style name="TextAppearance.MediaRouter.Title" parent="TextAppearance.AppCompat.Title"/>
-    <style name="Theme.MediaRouter" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="windowNoTitle">true</item>
-        <item name="mediaRouteButtonStyle">@style/Widget.MediaRouter.MediaRouteButton</item>
+    <declare-styleable name="FontFamily">
+        <!-- The authority of the Font Provider to be used for the request. -->
+        <attr format="string" name="fontProviderAuthority"/>
+        <!-- The package for the Font Provider to be used for the request. This is used to verify
+        the identity of the provider. -->
+        <attr format="string" name="fontProviderPackage"/>
+        <!-- The query to be sent over to the provider. Refer to your font provider's documentation
+        on the format of this string. -->
+        <attr format="string" name="fontProviderQuery"/>
+        <!-- The sets of hashes for the certificates the provider should be signed with. This is
+        used to verify the identity of the provider, and is only required if the provider is not
+        part of the system image. This value may point to one list or a list of lists, where each
+        individual list represents one collection of signature hashes. Refer to your font provider's
+        documentation for these values. -->
+        <attr format="reference" name="fontProviderCerts"/>
+        <!-- The strategy to be used when fetching font data from a font provider in XML layouts.
+        This attribute is ignored when the resource is loaded from code, as it is equivalent to the
+        choice of API between {@link
+    androidx.core.content.res.ResourcesCompat#getFont(Context, int)} (blocking) and
+        {@link
+    androidx.core.content.res.ResourcesCompat#getFont(Context, int, FontCallback, Handler)}
+        (async). -->
+        <attr name="fontProviderFetchStrategy">
+            <!-- The blocking font fetch works as follows.
+              First, check the local cache, then if the requested font is not cached, request the
+              font from the provider and wait until it is finished.  You can change the length of
+              the timeout by modifying fontProviderFetchTimeout.  If the timeout happens, the
+              default typeface will be used instead. -->
+            <enum name="blocking" value="0"/>
+            <!-- The async font fetch works as follows.
+              First, check the local cache, then if the requeted font is not cached, trigger a
+              request the font and continue with layout inflation. Once the font fetch succeeds, the
+              target text view will be refreshed with the downloaded font data. The
+              fontProviderFetchTimeout will be ignored if async loading is specified. -->
+            <enum name="async" value="1"/>
+        </attr>
+        <!-- The length of the timeout during fetching. -->
+        <attr format="integer" name="fontProviderFetchTimeout">
+            <!-- A special value for the timeout. In this case, the blocking font fetching will not
+              timeout and wait until a reply is received from the font provider. -->
+            <enum name="forever" value="-1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="FontFamilyFont">
+        <!-- The style of the given font file. This will be used when the font is being loaded into
+         the font stack and will override any style information in the font's header tables. If
+         unspecified, the value in the font's header tables will be used. -->
+        <attr name="fontStyle">
+            <enum name="normal" value="0"/>
+            <enum name="italic" value="1"/>
+        </attr>
+        <!-- The reference to the font file to be used. This should be a file in the res/font folder
+         and should therefore have an R reference value. E.g. @font/myfont -->
+        <attr format="reference" name="font"/>
+        <!-- The weight of the given font file. This will be used when the font is being loaded into
+         the font stack and will override any weight information in the font's header tables. Must
+         be a positive number, a multiple of 100, and between 100 and 900, inclusive. The most
+         common values are 400 for regular weight and 700 for bold weight. If unspecified, the value
+         in the font's header tables will be used. -->
+        <attr format="integer" name="fontWeight"/>
+        <!-- The variation settings to be applied to the font. The string should be in the following
+         format: "'tag1' value1, 'tag2' value2, ...". If the default variation settings should be
+         used, or the font used does not support variation settings, this attribute needs not be
+         specified. -->
+        <attr format="string" name="fontVariationSettings"/>
+        <!-- The index of the font in the tcc font file. If the font file referenced is not in the
+        tcc format, this attribute needs not be specified. -->
+        <attr format="integer" name="ttcIndex"/>
+        <!-- References to the framework attrs -->
+        <attr name="android:fontStyle"/>
+        <attr name="android:font"/>
+        <attr name="android:fontWeight"/>
+        <attr name="android:fontVariationSettings"/>
+        <attr name="android:ttcIndex"/>
+    </declare-styleable>
+    <declare-styleable name="GradientColor">
+        <!-- Start color of the gradient. -->
+        <attr name="android:startColor"/>
+        <!-- Optional center color. -->
+        <attr name="android:centerColor"/>
+        <!-- End color of the gradient. -->
+        <attr name="android:endColor"/>
+        <!-- Type of gradient. The default type is linear. -->
+        <attr name="android:type"/>
 
-        <item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_dark</item>
-        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_dark</item>
-        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_dark</item>
-        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_dark</item>
-        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
-        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_disconnected_dark</item>
-        <item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_dark</item>
-        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_dark</item>
-        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_dark</item>
+        <!-- Only applied to RadialGradient-->
+        <!-- Radius of the gradient, used only with radial gradient. -->
+        <attr name="android:gradientRadius"/>
 
-        <item name="mediaRouteControlPanelThemeOverlay">@null</item>
-    </style>
-    <style name="Theme.MediaRouter.Light" parent="ThemeOverlay.AppCompat.Light">
-        <item name="windowNoTitle">true</item>
-        <item name="mediaRouteButtonStyle">@style/Widget.MediaRouter.Light.MediaRouteButton</item>
+        <!-- Only applied to SweepGradient / RadialGradient-->
+        <!-- X coordinate of the center of the gradient within the path. -->
+        <attr name="android:centerX"/>
+        <!-- Y coordinate of the center of the gradient within the path. -->
+        <attr name="android:centerY"/>
 
-        <item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_light</item>
-        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_light</item>
-        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_light</item>
-        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_light</item>
-        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_light</item>
-        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_grey</item>
-        <item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_light</item>
-        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_light</item>
-        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_light</item>
+        <!-- LinearGradient specific -->
+        <!-- X coordinate of the start point origin of the gradient.
+             Defined in same coordinates as the path itself -->
+        <attr name="android:startX"/>
+        <!-- Y coordinate of the start point of the gradient within the shape.
+             Defined in same coordinates as the path itself -->
+        <attr name="android:startY"/>
+        <!-- X coordinate of the end point origin of the gradient.
+             Defined in same coordinates as the path itself -->
+        <attr name="android:endX"/>
+        <!-- Y coordinate of the end point of the gradient within the shape.
+             Defined in same coordinates as the path itself -->
+        <attr name="android:endY"/>
 
-        <item name="mediaRouteControlPanelThemeOverlay">@null</item>
+        <!-- Defines the tile mode of the gradient. SweepGradient doesn't support tiling. -->
+        <attr name="android:tileMode"/>
+    </declare-styleable>
+    <declare-styleable name="GradientColorItem">
+        <!-- The offset (or ratio) of this current color item inside the gradient.
+             The value is only meaningful when it is between 0 and 1. -->
+        <attr name="android:offset"/>
+        <!-- The current color for the offset inside the gradient. -->
+        <attr name="android:color"/>
+    </declare-styleable>
+    <dimen name="compat_button_inset_horizontal_material">4dp</dimen>
+    <dimen name="compat_button_inset_vertical_material">6dp</dimen>
+    <dimen name="compat_button_padding_horizontal_material">8dp</dimen>
+    <dimen name="compat_button_padding_vertical_material">4dp</dimen>
+    <dimen name="compat_control_corner_material">2dp</dimen>
+    <dimen name="compat_notification_large_icon_max_height">320dp</dimen>
+    <dimen name="compat_notification_large_icon_max_width">320dp</dimen>
+    <dimen name="notification_action_icon_size">32dp</dimen>
+    <dimen name="notification_action_text_size">13sp</dimen>
+    <dimen name="notification_big_circle_margin">12dp</dimen>
+    <dimen name="notification_content_margin_start">8dp</dimen>
+    <dimen name="notification_large_icon_height">64dp</dimen>
+    <dimen name="notification_large_icon_width">64dp</dimen>
+    <dimen name="notification_main_column_padding_top">10dp</dimen>
+    <dimen name="notification_media_narrow_margin">@dimen/notification_content_margin_start</dimen>
+    <dimen name="notification_right_icon_size">16dp</dimen>
+    <dimen name="notification_right_side_padding_top">2dp</dimen>
+    <dimen name="notification_small_icon_background_padding">3dp</dimen>
+    <dimen name="notification_small_icon_size_as_large">24dp</dimen>
+    <dimen name="notification_subtext_size">13sp</dimen>
+    <dimen name="notification_top_pad">10dp</dimen>
+    <dimen name="notification_top_pad_large_text">5dp</dimen>
+    <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
+    <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
+    <item name="line1" type="id"/>
+    <item name="line3" type="id"/>
+    <item name="tag_transition_group" type="id"/>
+    <item name="tag_unhandled_key_event_manager" type="id"/>
+    <item name="tag_unhandled_key_listeners" type="id"/>
+    <item name="text" type="id"/>
+    <item name="text2" type="id"/>
+    <item name="title" type="id"/>
+    <integer name="status_bar_notification_info_maxnum">999</integer>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <style name="TextAppearance.Compat.Notification" parent="@android:style/TextAppearance.StatusBar.EventContent"/>
+    <style name="TextAppearance.Compat.Notification.Info">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
-    <style name="Theme.MediaRouter.Light.DarkControlPanel">
-        <item name="mediaRouteControlPanelThemeOverlay">@style/ThemeOverlay.MediaRouter.Dark</item>
+    <style name="TextAppearance.Compat.Notification.Line2" parent="TextAppearance.Compat.Notification.Info"/>
+    <style name="TextAppearance.Compat.Notification.Time">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
-    <style name="Theme.MediaRouter.LightControlPanel">
-        <item name="mediaRouteControlPanelThemeOverlay">@style/ThemeOverlay.MediaRouter.Light</item>
-    </style>
-    <style name="ThemeOverlay.MediaRouter.Dark" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_dark</item>
-        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_dark</item>
-        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_dark</item>
-        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
-
-    </style>
-    <style name="ThemeOverlay.MediaRouter.Light" parent="ThemeOverlay.AppCompat.Light">
-        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_light</item>
-        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_light</item>
-        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_light</item>
-        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_light</item>
-    </style>
-    <style name="Widget.MediaRouter.Light.MediaRouteButton" parent="Widget.AppCompat.Light.ActionButton">
-        <item name="externalRouteEnabledDrawable">@drawable/mr_button_light</item>
-    </style>
-    <style name="Widget.MediaRouter.MediaRouteButton" parent="Widget.AppCompat.ActionButton">
-        <item name="externalRouteEnabledDrawable">@drawable/mr_button_dark</item>
-    </style>
+    <style name="TextAppearance.Compat.Notification.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title"/>
+    <style name="Widget.Compat.NotificationActionContainer" parent=""/>
+    <style name="Widget.Compat.NotificationActionText" parent=""/>
 </resources>
